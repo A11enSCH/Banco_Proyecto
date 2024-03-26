@@ -1,5 +1,9 @@
 package Logica;
 
-public class Clientes {
+import java.util.HashMap;
 
+public class Clientes {
+	private int id;
+	private String nombre;
+	private HashMap<Integer, Producto_financiero> 
 }
