@@ -1,9 +1,10 @@
 package Logica;
 
-public class Producto_financiero {
+public abstract class Producto_financiero {
 	private String nombre;
 	private Clientes cliente;
 	private String tipo;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -23,5 +24,6 @@ public class Producto_financiero {
 		this.tipo = tipo;
 	}
 	
-	
+	public abstract double consignar();
+	public abstract double retirar();
 }
