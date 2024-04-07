@@ -27,3 +27,16 @@ public abstract class Producto_financiero {
 	public abstract double consignar();
 	public abstract double retirar();
 }
+//Metodos para retirar y consignar
+/*public void retirar(int valor) throws Exception {
+	if(valor <= this.saldo) {
+		this.saldo -= valor;			
+	}else {
+		throw new Exception("Saldo insuficiente");
+	}
+}
+
+public void transferir(Cuenta cuentaDestino, int valor) throws Exception{
+	this.retirar(valor);
+	cuentaDestino.consignar(valor);
+}*/
