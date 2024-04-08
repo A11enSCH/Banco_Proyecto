@@ -1,17 +1,34 @@
 package Logica;
 
 public class TarjetaC extends Producto_financiero{
-
+	protected String contraseña;
+	
+	
 	@Override
-	public double consignar() {
-		// TODO Auto-generated method stub
-		return 0;
+	protected void consignar(int valor) {
+		if(contraseña == contraseña) {
+			this.saldo += valor;
+		}
+		super.consignar(valor);
+	}
+	
+	@Override
+	protected void retirar(int valor) throws Exception {
+		if(contraseña == contraseña) {
+			if(valor <= this.saldo) {
+				this.saldo -= valor;			
+			}else {
+				throw new Exception("Saldo insuficiente");
+			}
+		}
+		super.retirar(valor);
 	}
 
 	@Override
-	public double retirar() {
-		// TODO Auto-generated method stub
-		return 0;
+	protected void transferir(Producto_financiero productoDestino, int valor) throws Exception {
+		if(contraseña == contraseña) {
+			this.retirar(valor);
+		}
+		super.transferir(productoDestino, valor);
 	}
-
 }
