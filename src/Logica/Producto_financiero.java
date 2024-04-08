@@ -4,6 +4,7 @@ public abstract class Producto_financiero {
 	private String nombre;
 	private Clientes cliente;
 	private String tipo;
+	protected double saldo;
 	
 	public String getNombre() {
 		return nombre;
@@ -23,20 +24,43 @@ public abstract class Producto_financiero {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	public abstract double consignar();
-	public abstract double retirar();
-}
-//Metodos para retirar y consignar
-/*public void retirar(int valor) throws Exception {
-	if(valor <= this.saldo) {
-		this.saldo -= valor;			
-	}else {
-		throw new Exception("Saldo insuficiente");
+	public double getSaldo() {
+		return saldo;
 	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	protected void consignar(int valor) {
+		this.saldo += valor;
+	}
+	
+	protected void retirar(int valor) throws Exception {
+		if(valor <= this.saldo) {
+			this.saldo -= valor;			
+		}else {
+			throw new Exception("Saldo insuficiente");
+		}
+	}
+	
+	protected void transferir(Producto_financiero productoDestino, int valor) throws Exception{
+		this.retirar(valor);
+		productoDestino.consignar(valor);
+	}
+	
 }
-
-public void transferir(Cuenta cuentaDestino, int valor) throws Exception{
-	this.retirar(valor);
-	cuentaDestino.consignar(valor);
-}*/
+/*protected void consignar(int valor) {
+		this.saldo += valor;
+	}
+	
+	protected void retirar(int valor) throws Exception {
+		if(valor <= this.saldo) {
+			this.saldo -= valor;			
+		}else {
+			throw new Exception("Saldo insuficiente");
+		}
+	}
+	
+	protected void transferir(Producto_financiero productoDestino, int valor) throws Exception{
+		this.retirar(valor);
+		productoDestino.consignar(valor);
+	}*/

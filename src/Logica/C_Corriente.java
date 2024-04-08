@@ -3,15 +3,23 @@ package Logica;
 public class C_Corriente extends Producto_financiero{
 
 	@Override
-	public double consignar() {
-		// TODO Auto-generated method stub
-		return 0;
+	protected void retirar(int valor) throws Exception {
+		if(valor <= this.saldo) {
+			this.saldo -= valor;			
+		}else {
+			this.saldo -=valor;
+			throw new Exception("Numeros negativos");
+		}super.retirar(valor);
 	}
-
-	@Override
-	public double retirar() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public void cheque(int valor) throws Exception {
+		if(this.saldo <= valor) {
+			try {
+				this.retirar(valor);
+			} catch (Exception e) {
+				
+			} 
+		}
 	}
 
 }
