@@ -48,19 +48,3 @@ public abstract class Producto_financiero {
 	}
 	
 }
-/*protected void consignar(int valor) {
-		this.saldo += valor;
-	}
-	
-	protected void retirar(int valor) throws Exception {
-		if(valor <= this.saldo) {
-			this.saldo -= valor;			
-		}else {
-			throw new Exception("Saldo insuficiente");
-		}
-	}
-	
-	protected void transferir(Producto_financiero productoDestino, int valor) throws Exception{
-		this.retirar(valor);
-		productoDestino.consignar(valor);
-	}*/

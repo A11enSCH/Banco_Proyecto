@@ -6,7 +6,7 @@ public abstract class Clientes {
 	private int id;
 	private String nombre;
 	private String tipo;
-	private HashMap<Integer, Producto_financiero> producto_f;
+	private HashMap<String, Producto_financiero> producto_f;
 	
 	public int getId() {
 		return id;
@@ -26,10 +26,10 @@ public abstract class Clientes {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public HashMap<Integer, Producto_financiero> getProducto_f() {
+	public HashMap<String, Producto_financiero> getProducto_f() {
 		return producto_f;
 	}
-	public void setProducto_f(HashMap<Integer, Producto_financiero> producto_f) {
+	public void setProducto_f(HashMap<String, Producto_financiero> producto_f) {
 		this.producto_f = producto_f;
 	}
 	
@@ -37,7 +37,7 @@ public abstract class Clientes {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo = tipo;
-		this.producto_f = new HashMap<Integer, Producto_financiero>();
+		this.producto_f = new HashMap<String, Producto_financiero>();
 	}
 	
 }
