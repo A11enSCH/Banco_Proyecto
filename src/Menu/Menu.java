@@ -50,5 +50,8 @@ public class Menu {
 		sc.close();
 	}
 	
+	private void cargar() {
+		this.banco.cargar();
+	}
 	
 }

@@ -14,6 +14,15 @@ public class Franquicia {
 		return cliente;
 	}
 	
-
+	public Franquicia() {
+		this.cliente = new HashMap<Integer, Clientes>();
+		this.producto_financieros = new ArrayList<Producto_financiero>();
+	}
+	public void crearCliente(int id, String nombre, String tipo) throws Exception{
+		
+		
+	}
+	
+	
 	
 }
