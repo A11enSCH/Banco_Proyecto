@@ -1,17 +1,43 @@
 package Logica;
 
-public class CreditoH extends Producto_financiero{
+import java.util.Scanner;
 
-	@Override
-	public double consignar() {
-		// TODO Auto-generated method stub
-		return 0;
+public class CreditoH extends Producto_financiero{
+	Scanner sc = new Scanner(System.in);
+	private double prestamo,valor_f;
+	private int op, tiempo;
+	
+	public double getPrestamo() {
+		return prestamo;
 	}
 
-	@Override
-	public double retirar() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setPrestamo(double prestamo) {
+		this.prestamo = prestamo;
+	}
+	
+	public int getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(int tiempo) {
+		this.tiempo = tiempo;
+	}
+	
+	public double prestamo() {
+		System.out.println("Ingrese el valor del prestamo y el tiempo de extension");
+		prestamo = sc.nextDouble(); 
+		setTiempo(sc.nextInt());
+		System.out.println("Si desea un prestamo de valor" + prestamo + ", tenga en cuenta que el prestamo solo es para la compra de una vivienda y que posee un interes del 10% que tiene que pagarse a lo largo de" + tiempo +  ". Si desea seguir con el proceso presione 1");
+		op = sc.nextInt();
+		if (op == 1) {
+			saldo += prestamo;
+			System.out.println("Prestamo realizado");
+		}else {
+			System.out.println("No se realiza el prestamo");
+		}
+		valor_f = (prestamo+((prestamo*10)/100))*tiempo;
+		System.out.println("EL valor a pagar final es de: " + valor_f );
+		return saldo;
 	}
 
 }

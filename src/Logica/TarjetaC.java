@@ -1,20 +1,31 @@
 package Logica;
 
+import java.util.Scanner;
+
 public class TarjetaC extends Producto_financiero{
-	protected String contraseña;
-	
-	
-	@Override
-	protected void consignar(int valor) {
-		if(contraseña == contraseña) {
-			this.saldo += valor;
-		}
-		super.consignar(valor);
+	protected String contraseña, contraseña_ing;
+	Scanner sc = new Scanner(System.in);
+
+	public String getContraseña() {
+		return contraseña;
 	}
-	
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
+	public String getContraseña_ing() {
+		return contraseña_ing;
+	}
+
+	public void setContraseña_ing(String contraseña_ing) {
+		this.contraseña_ing = contraseña_ing;
+	}
+
 	@Override
 	protected void retirar(int valor) throws Exception {
-		if(contraseña == contraseña) {
+		System.out.println("Ingresa la contraseña para poder hacer la transacción");
+		if(verificar_c()== true) {
 			if(valor <= this.saldo) {
 				this.saldo -= valor;			
 			}else {
@@ -26,9 +37,18 @@ public class TarjetaC extends Producto_financiero{
 
 	@Override
 	protected void transferir(Producto_financiero productoDestino, int valor) throws Exception {
-		if(contraseña == contraseña) {
+		System.out.println("Ingresa la contraseña para poder hacer la transacción");
+		if(verificar_c()== true) {
 			this.retirar(valor);
 		}
 		super.transferir(productoDestino, valor);
+	}
+	public boolean verificar_c() {
+		contraseña_ing = sc.nextLine();
+		if(contraseña_ing.equals(contraseña)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }
