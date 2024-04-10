@@ -5,6 +5,7 @@ import Logica.Franquicia;
 import Logica.Producto_financieroG;
 import Logica.Producto_financieroL;
 
+
 public class Menu {
 	private Franquicia banco;
 
@@ -32,6 +33,7 @@ public class Menu {
 				System.out.println("6. Imprimir ProductosL");
 				System.out.println("7. Almacenar a archivo de texto plano");
 				System.out.println("8. Cargar desde archivo de texto plano");
+				System.out.println("9. Movimientos");
 				op = sc.nextInt();
 				if(op == 1) {
 					this.crearCliente(sc);				
@@ -49,13 +51,23 @@ public class Menu {
 					this.almacenar();
 				}else if(op == 8) {
 					this.cargar();
-				}
+				}/*else if(op == 9) {
+					this.movimientos(sc);
+				}*/
 			} catch (Exception e) {
 				e.getMessage();
 			}
 		}while (op != 0);
 		sc.close();
 	}
+
+	/*private void movimientos(Scanner sc) throws Exception{
+		System.out.println("Ingresa el id del cliente para hacer algun movimiento: ");
+		int idCliente = sc.nextInt();
+		System.out.print("Ingresa la cuenta que con la que desea hacer el movimiento: ");
+		int numero = sc.nextInt();
+		this.banco.movimientos(idCliente, numero);
+	}*/
 
 	private void imprimirProductosL() {
 		System.out.println("numero\tSaldo\tTipo\tCliente");
@@ -128,9 +140,11 @@ public class Menu {
 		double saldo = sc.nextDouble();
 		System.out.println("Tipo:");
 		String nombre = sc.next();
+		System.out.println("Contraseña");
+		String contraseña = sc.next();
 		System.out.println("Id Cliente:");
 		int idCliente = sc.nextInt();
-		this.banco.crearTarjeta(numero, saldo, nombre, idCliente);		
+		this.banco.crearTarjeta(numero, saldo, nombre, contraseña, idCliente);		
 	}
 
 	private void crearCorriente(Scanner sc) throws Exception{

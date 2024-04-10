@@ -41,7 +41,7 @@ public class Franquicia {
 		}
 	}
 
-	public void crearTarjeta(int numero, double saldo, String nombre, int idCliente) throws Exception{
+	public void crearTarjeta(int numero, double saldo, String nombre,String contraseña, int idCliente) throws Exception{
 		if (!this.clientes.containsKey(idCliente)) {
 			throw new Exception ("Cliente No existente");
 		}else if(this.exiteProductoG(numero)){
@@ -159,9 +159,13 @@ public class Franquicia {
 			String datos[] = linea.split(";");
 			this.crearAhorros(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
 			this.crearCorriente(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
-			this.crearTarjeta(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+			this.crearTarjeta(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], datos[3], Integer.parseInt(datos[4]));
 		}
 	}
+	
+/*public void movimientos(int idCliente, int numero) throws Exception{
+		this.productoFG.
+	}*/
 
 	private boolean existeTipoProductoG(int idCliente, String nombre) {
 		for(Integer numero : this.clientes.get(idCliente).getProducto_fg().keySet()) {

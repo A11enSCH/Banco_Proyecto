@@ -24,9 +24,11 @@ public class CreditoH extends Producto_financieroL{
 	}
 	
 	public double prestamo() {
-		System.out.println("Ingrese el valor del prestamo y el tiempo de extension");
-		prestamo = sc.nextDouble(); 
-		setTiempo(sc.nextInt());
+		System.out.println("Ingrese el valor del prestamo y el tiempo de extension en años");
+		System.out.println("Ingrese el valor del prestamo: ");
+		prestamo = sc.nextDouble();
+		System.out.println("Ingrese el tiempo de extension en años: ");
+		tiempo = sc.nextInt();
 		System.out.println("Si desea un prestamo de valor" + prestamo + ", tenga en cuenta que el prestamo solo es para la compra de una vivienda y que posee un interes del 10% que tiene que pagarse a lo largo de" + tiempo +  ". Si desea seguir con el proceso presione 1");
 		op = sc.nextInt();
 		if (op == 1) {

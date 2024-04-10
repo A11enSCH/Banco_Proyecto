@@ -47,4 +47,10 @@ public abstract class Producto_financieroL{
 		this.retirar(valor);
 		productoDestino.consignar(valor);
 	}
+	
+	@Override
+	public String toString() {
+		return this.numero + "\t" + this.saldo + "\t" + this.nombre + "\t" + this.cliente;
+	}
+
 }

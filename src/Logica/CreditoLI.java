@@ -24,10 +24,10 @@ public class CreditoLI extends Producto_financieroL{
 	}
 
 	public double prestamo() {
-		System.out.println("Ingrese el valor del prestamo y el tiempo de extension");
+		System.out.println("Ingrese el valor del prestamo y el tiempo de extension en años");
 		System.out.println("Ingrese el valor del prestamo: ");
 		prestamo = sc.nextDouble();
-		System.out.println("Ingrese el tiempo de extension: ");
+		System.out.println("Ingrese el tiempo de extension en años: ");
 		tiempo = sc.nextInt();
 		System.out.println("Si desea un prestamo de valor" + prestamo + "que tiene un interes del 10% y tiene que pagarse a lo largo de" + tiempo +  ". Si desea seguir con el proceso presione 1");
 		op = sc.nextInt();
