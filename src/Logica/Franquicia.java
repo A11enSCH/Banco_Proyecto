@@ -157,8 +157,9 @@ public class Franquicia {
 		ArrayList<String> lineasProductosG = ArchivoPlano.cargar("productosG.csv");
 		for(String linea : lineasProductosG) {
 			String datos[] = linea.split(";");
-			this.crearHipoteca(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
-			this.crearInversion(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+			this.crearAhorros(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+			this.crearCorriente(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+			this.crearTarjeta(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
 		}
 	}
 

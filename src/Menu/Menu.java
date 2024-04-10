@@ -4,8 +4,6 @@ import java.util.Scanner;
 import Logica.Franquicia;
 import Logica.Producto_financieroG;
 import Logica.Producto_financieroL;
-import Logica.Clientes;
-
 
 public class Menu {
 	private Franquicia banco;
@@ -27,8 +25,8 @@ public class Menu {
 				System.out.println("Seleccione:");
 				System.out.println("0. Salir");
 				System.out.println("1. Crear Cliente");
-				System.out.println("2. Escoger ProductoG");
-				System.out.println("3. Escoger ProductoL");
+				System.out.println("2. Crear ProductoG");
+				System.out.println("3. Crear ProductoL");
 				System.out.println("4. Imprimir Clientes");
 				System.out.println("5. Imprimir ProductosG");
 				System.out.println("6. Imprimir ProductosL");
@@ -58,7 +56,6 @@ public class Menu {
 		}while (op != 0);
 		sc.close();
 	}
-
 
 	private void imprimirProductosL() {
 		System.out.println("numero\tSaldo\tTipo\tCliente");
@@ -119,7 +116,8 @@ public class Menu {
 			} catch (Exception e) {
 				e.getMessage();
 			}
-		} while (esc != 0); 
+		} while (esc != 0);
+		this.presentacion();
 		sc.close();
 	}
 
@@ -177,6 +175,7 @@ public class Menu {
 				e.getMessage();
 			}
 		} while (esc1!=0);
+		this.presentacion();
 		sc.close();
 	}
 
