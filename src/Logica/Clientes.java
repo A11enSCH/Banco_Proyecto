@@ -47,4 +47,8 @@ public abstract class Clientes {
 		this.producto_fl = new HashMap<Integer, Producto_financieroL>();
 	}
 	
+	@Override
+	public String toString() {
+		return this.id + "\t" + this.nombre + "\t" + this.tipo;
+	}
 }

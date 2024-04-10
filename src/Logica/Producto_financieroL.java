@@ -35,7 +35,7 @@ public abstract class Producto_financieroL{
 		this.saldo += valor;
 	}
 	
-	protected void retirar(int valor) throws Exception {
+	private void retirar(int valor) throws Exception {
 		if(valor <= this.saldo) {
 			this.saldo -= valor;			
 		}else {
@@ -43,5 +43,8 @@ public abstract class Producto_financieroL{
 		}
 	}
 	
-	
+	protected void transferir(Producto_financieroG productoDestino, int valor) throws Exception{
+		this.retirar(valor);
+		productoDestino.consignar(valor);
+	}
 }

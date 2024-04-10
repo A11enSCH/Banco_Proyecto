@@ -1,10 +1,11 @@
 package Menu;
 
 import java.util.Scanner;
-
 import Logica.Franquicia;
 import Logica.Producto_financieroG;
 import Logica.Producto_financieroL;
+import Logica.Clientes;
+
 
 public class Menu {
 	private Franquicia banco;
@@ -27,9 +28,9 @@ public class Menu {
 				System.out.println("0. Salir");
 				System.out.println("1. Crear Cliente");
 				System.out.println("2. Escoger ProductoG");
-				System.out.println("5. Escoger ProductoL");
-				System.out.println("3. Imprimir Clientes");
-				System.out.println("4. Imprimir ProductosG");
+				System.out.println("3. Escoger ProductoL");
+				System.out.println("4. Imprimir Clientes");
+				System.out.println("5. Imprimir ProductosG");
 				System.out.println("6. Imprimir ProductosL");
 				System.out.println("7. Almacenar a archivo de texto plano");
 				System.out.println("8. Cargar desde archivo de texto plano");
@@ -40,13 +41,13 @@ public class Menu {
 					this.escogerProductoG(sc);
 				}else if(op == 3) {
 					this.escogerProductoL(sc);
-				}/*else if(op == 4) {
+				}else if(op == 4) {
 					this.imprimirClientes();
 				}else if(op == 5) {
 					this.imprimirProductosG();
 				}else if(op == 6) {
 					this.imprimirProductosL();
-				}*/else if(op == 7) {
+				}else if(op == 7) {
 					this.almacenar();
 				}else if(op == 8) {
 					this.cargar();
@@ -59,7 +60,28 @@ public class Menu {
 	}
 
 
-	private void cargar() {
+	private void imprimirProductosL() {
+		System.out.println("numero\tSaldo\tTipo\tCliente");
+		for(Producto_financieroL pL : this.banco.getProductoFL()) {
+			System.out.println(pL);
+		}		
+	}
+
+	private void imprimirProductosG() {
+		System.out.println("numero\tSaldo\tTipo\tCliente");
+		for(Producto_financieroG pG : this.banco.getProductoFG()) {
+			System.out.println(pG);
+		}
+	}
+
+	private void imprimirClientes() {
+		System.out.println("id\tNombre\tTipo");
+		for(Integer idClientes : this.banco.getCliente().keySet()){
+			System.out.println(this.banco.getCliente().get(idClientes));
+		}		
+	}
+
+	private void cargar() throws Exception {
 		this.banco.cargar();
 	}
 
@@ -97,12 +119,12 @@ public class Menu {
 			} catch (Exception e) {
 				e.getMessage();
 			}
-		} while (esc!=0);
+		} while (esc != 0); 
 		sc.close();
 	}
 
 	private void crearTarjeta(Scanner sc) throws Exception{
-		System.out.println("Nombre:");
+		System.out.println("Numero:");
 		int numero = sc.nextInt();
 		System.out.println("Saldo:");
 		double saldo = sc.nextDouble();
@@ -114,7 +136,7 @@ public class Menu {
 	}
 
 	private void crearCorriente(Scanner sc) throws Exception{
-		System.out.println("Nombre:");
+		System.out.println("Numero:");
 		int numero = sc.nextInt();
 		System.out.println("Saldo:");
 		double saldo = sc.nextDouble();
@@ -126,7 +148,7 @@ public class Menu {
 	}
 
 	private void crearAhorro(Scanner sc) throws Exception{
-		System.out.println("Nombre:");
+		System.out.println("Numero:");
 		int numero = sc.nextInt();
 		System.out.println("Saldo:");
 		double saldo = sc.nextDouble();
@@ -159,7 +181,7 @@ public class Menu {
 	}
 
 	private void crearLibreinversion(Scanner sc) throws Exception {
-		System.out.println("Nombre:");
+		System.out.println("Numero:");
 		int numero = sc.nextInt();
 		System.out.println("Saldo:");
 		double saldo = sc.nextDouble();
@@ -171,7 +193,7 @@ public class Menu {
 	}
 
 	private void crearHipotecario(Scanner sc) throws Exception {
-		System.out.println("Nombre:");
+		System.out.println("Numero:");
 		int numero = sc.nextInt();
 		System.out.println("Saldo:");
 		double saldo = sc.nextDouble();
@@ -184,12 +206,3 @@ public class Menu {
 	
 	
 }
-/*System.out.println("Nombre:");
-int numero = sc.nextInt();
-System.out.println("Saldo:");
-int saldo = sc.nextInt();
-System.out.println("Tipo:");
-String tipo = sc.next();
-System.out.println("Id Cliente:");
-int idCliente = sc.nextInt();
-this.banco.crearProducto(numero, saldo, tipo, idCliente);*/

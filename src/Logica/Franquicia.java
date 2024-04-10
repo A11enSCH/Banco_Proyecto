@@ -3,7 +3,10 @@ package Logica;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import Logica.*;
+import Logica.Clientes;
+import Logica.Producto_financieroG;
+import Logica.Producto_financieroL;
+import persistencia.ArchivoPlano;
 
 public class Franquicia {
 	private ArrayList<Producto_financieroG>productoFG;
@@ -26,6 +29,8 @@ public class Franquicia {
 		this.productoFL = new ArrayList<Producto_financieroL>();
 	}
 
+	
+	
 	public void crearCliente(Integer id, String nombre, String tipo) throws Exception{
 		if(this.clientes.containsKey(id)){
 			throw new Exception("cliente repetido");
@@ -35,7 +40,7 @@ public class Franquicia {
 			this.clientes.put(id, clientes);
 		}
 	}
-	
+
 	public void crearTarjeta(int numero, double saldo, String nombre, int idCliente) throws Exception{
 		if (!this.clientes.containsKey(idCliente)) {
 			throw new Exception ("Cliente No existente");
@@ -51,7 +56,7 @@ public class Franquicia {
 		}
 
 	}
-	
+
 	public void crearAhorros(int numero, double saldo, String nombre, int idCliente) throws Exception{
 		if (!this.clientes.containsKey(idCliente)) {
 			throw new Exception ("Cliente No existente");
@@ -67,7 +72,7 @@ public class Franquicia {
 		}
 
 	}
-	
+
 	public void crearCorriente(int numero, double saldo, String nombre, int idCliente) throws Exception{
 		if (!this.clientes.containsKey(idCliente)) {
 			throw new Exception ("Cliente No existente");
@@ -83,46 +88,78 @@ public class Franquicia {
 		}
 
 	}
-	
+
 	public void crearInversion(int numero, double saldo, String nombre, int idCliente) throws Exception{
 		if (!this.clientes.containsKey(idCliente)) {
 			throw new Exception ("Cliente No existente");
-		}else if(this.exiteProductoG(numero)){
+		}else if(this.exiteProductoL(numero)){
 			throw new Exception ("La cuenta ya existe");
 		} else if(this.existeTipoProductoG(idCliente, nombre)) {
 			throw new Exception ("El cliente ya tiene una cuenta de tipo : " + nombre);
 		}else {
-			Producto_financieroG inversion = new Producto_financieroG() {
+			Producto_financieroL inversion = new Producto_financieroL() {
 			};
-			this.clientes.get(idCliente).getProducto_fg().put(numero, inversion);
-			this.productoFG.add(inversion);
+			this.clientes.get(idCliente).getProducto_fl().put(numero, inversion);
+			this.productoFL.add(inversion);
 		}
 
 	}
-	
+
 	public void crearHipoteca(int numero, double saldo, String nombre, int idCliente) throws Exception{
 		if (!this.clientes.containsKey(idCliente)) {
 			throw new Exception ("Cliente No existente");
 		}else if(this.exiteProductoG(numero)){
 			throw new Exception ("La cuenta ya existe");
-		} else if(this.existeTipoProductoG(idCliente, nombre)) {
+		} else if(this.existeTipoProductoL(idCliente, nombre)) {
 			throw new Exception ("El cliente ya tiene una cuenta de tipo : " + nombre);
 		}else {
-			Producto_financieroG hipoteca = new Producto_financieroG() {
+			Producto_financieroL hipoteca = new Producto_financieroL() {
 			};
-			this.clientes.get(idCliente).getProducto_fg().put(numero, hipoteca);
-			this.productoFG.add(hipoteca);
+			this.clientes.get(idCliente).getProducto_fl().put(numero, hipoteca);
+			this.productoFL.add(hipoteca);
 		}
 
 	}
 
 	public void almacenar() {
-		// TODO Auto-generated method stub
+		ArrayList<String> lineasClientes = new ArrayList<String>();
+		for(Integer id : this.clientes.keySet()) {
+			Clientes cliente = this.clientes.get(id);
+			lineasClientes.add(cliente.getId() + ";" + cliente.getNombre() + ";" + cliente.getTipo());
+		}
+		ArchivoPlano.almacenar("clientes.csv", lineasClientes);
 
+		ArrayList<String> lineasProductosG = new ArrayList<String>();
+		for(Producto_financieroG producto : this.productoFG) {
+			lineasProductosG.add(producto.getNumero() + ";" + producto.getSaldo() + ";" + producto.getNombre() + ";" + producto.getCliente().getId());
+		}
+		ArchivoPlano.almacenar("productosG.csv", lineasProductosG);
+
+		ArrayList<String> lineasProductosL = new ArrayList<String>();
+		for(Producto_financieroL producto : this.productoFL) {
+			lineasProductosL.add(producto.getNumero() + ";" + producto.getSaldo() + ";" + producto.getNombre() + ";" + producto.getCliente().getId());
+		}
+		ArchivoPlano.almacenar("productosL.csv", lineasProductosL);
 	}
-	public void cargar() {
-		// TODO Auto-generated method stub
 
+	public void cargar() throws Exception {
+		ArrayList<String> lineasClientes = ArchivoPlano.cargar("clientes.csv");
+		for(String linea : lineasClientes) {
+			String datos[] = linea.split(";");
+			this.crearCliente(Integer.parseInt(datos[0]), datos[1], datos[2]);
+		}
+		ArrayList<String> lineasProductosL = ArchivoPlano.cargar("productosL.csv");
+		for(String linea : lineasProductosL) {
+			String datos[] = linea.split(";");
+			this.crearHipoteca(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+			this.crearInversion(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+		}
+		ArrayList<String> lineasProductosG = ArchivoPlano.cargar("productosG.csv");
+		for(String linea : lineasProductosG) {
+			String datos[] = linea.split(";");
+			this.crearHipoteca(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+			this.crearInversion(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), datos[2], Integer.parseInt(datos[3]));
+		}
 	}
 
 	private boolean existeTipoProductoG(int idCliente, String nombre) {

@@ -25,8 +25,10 @@ public class CreditoLI extends Producto_financieroL{
 
 	public double prestamo() {
 		System.out.println("Ingrese el valor del prestamo y el tiempo de extension");
-		prestamo = sc.nextDouble(); 
-		setTiempo(sc.nextInt());
+		System.out.println("Ingrese el valor del prestamo: ");
+		prestamo = sc.nextDouble();
+		System.out.println("Ingrese el tiempo de extension: ");
+		tiempo = sc.nextInt();
 		System.out.println("Si desea un prestamo de valor" + prestamo + "que tiene un interes del 10% y tiene que pagarse a lo largo de" + tiempo +  ". Si desea seguir con el proceso presione 1");
 		op = sc.nextInt();
 		if (op == 1) {
@@ -35,7 +37,7 @@ public class CreditoLI extends Producto_financieroL{
 		}else {
 			System.out.println("No se realiza el prestamo");
 		}
-		valor_f = (prestamo+((prestamo*10)/100))*tiempo;
+		valor_f = prestamo+(((prestamo*10)/100)*tiempo);
 		System.out.println("EL valor a pagar final es de: " + valor_f );
 		return saldo;
 	}
