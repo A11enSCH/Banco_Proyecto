@@ -1,6 +1,6 @@
 package Logica;
 
-public class C_Corriente extends Producto_financiero{
+public class C_Corriente extends Producto_financieroG{
 
 	@Override
 	protected void retirar(int valor) throws Exception {

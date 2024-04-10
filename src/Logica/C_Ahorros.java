@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class C_Ahorros extends Producto_financiero{
+public class C_Ahorros extends Producto_financieroG{
 	
 	public double intereses() {
 		

@@ -2,7 +2,7 @@ package Logica;
 
 import java.util.Scanner;
 
-public class TarjetaC extends Producto_financiero{
+public class TarjetaC extends Producto_financieroG{
 	protected String contraseña, contraseña_ing;
 	Scanner sc = new Scanner(System.in);
 
@@ -36,7 +36,7 @@ public class TarjetaC extends Producto_financiero{
 	}
 
 	@Override
-	protected void transferir(Producto_financiero productoDestino, int valor) throws Exception {
+	protected void transferir(Producto_financieroG productoDestino, int valor) throws Exception {
 		System.out.println("Ingresa la contraseña para poder hacer la transacción");
 		if(verificar_c()== true) {
 			this.retirar(valor);

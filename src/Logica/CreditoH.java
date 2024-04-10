@@ -2,7 +2,7 @@ package Logica;
 
 import java.util.Scanner;
 
-public class CreditoH extends Producto_financiero{
+public class CreditoH extends Producto_financieroL{
 	Scanner sc = new Scanner(System.in);
 	private double prestamo,valor_f;
 	private int op, tiempo;
