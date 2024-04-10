@@ -9,7 +9,7 @@ public class Franquicia {
 	private ArrayList<Producto_financieroG>productoFG;
 	private ArrayList<Producto_financieroL>productoFL;
 	private HashMap<Integer, Clientes>clientes;
-	
+
 	public ArrayList<Producto_financieroG> getProductoFG() {
 		return productoFG;
 	}
@@ -19,13 +19,13 @@ public class Franquicia {
 	public HashMap<Integer, Clientes> getCliente() {
 		return clientes;
 	}
-	
+
 	public Franquicia() {
 		this.clientes = new HashMap<Integer, Clientes>();
 		this.productoFG = new ArrayList<Producto_financieroG>();
 		this.productoFL = new ArrayList<Producto_financieroL>();
 	}
-	
+
 	public void crearCliente(Integer id, String nombre, String tipo) throws Exception{
 		if(this.clientes.containsKey(id)){
 			throw new Exception("cliente repetido");
@@ -36,7 +36,7 @@ public class Franquicia {
 		}
 	}
 	
-	public void crearProductoG(int numero, double saldo, String nombre, int idCliente) {
+	public void crearTarjeta(int numero, double saldo, String nombre, int idCliente) throws Exception{
 		if (!this.clientes.containsKey(idCliente)) {
 			throw new Exception ("Cliente No existente");
 		}else if(this.exiteProductoG(numero)){
@@ -44,23 +44,87 @@ public class Franquicia {
 		} else if(this.existeTipoProductoG(idCliente, nombre)) {
 			throw new Exception ("El cliente ya tiene una cuenta de tipo : " + nombre);
 		}else {
-			Producto_financieroG PG = new Producto_financieroG(numero, saldo, nombre, this.clientes.get(idCliente)) {
+			Producto_financieroG tarjeta = new Producto_financieroG() {
 			};
-			this.clientes.get(idCliente).getProducto_fg().put(numero, PG);
-			this.productoFG.add(F);
+			this.clientes.get(idCliente).getProducto_fg().put(numero, tarjeta);
+			this.productoFG.add(tarjeta);
 		}
-		
+
 	}
 	
+	public void crearAhorros(int numero, double saldo, String nombre, int idCliente) throws Exception{
+		if (!this.clientes.containsKey(idCliente)) {
+			throw new Exception ("Cliente No existente");
+		}else if(this.exiteProductoG(numero)){
+			throw new Exception ("La cuenta ya existe");
+		} else if(this.existeTipoProductoG(idCliente, nombre)) {
+			throw new Exception ("El cliente ya tiene una cuenta de tipo : " + nombre);
+		}else {
+			Producto_financieroG ahorro = new Producto_financieroG() {
+			};
+			this.clientes.get(idCliente).getProducto_fg().put(numero, ahorro);
+			this.productoFG.add(ahorro);
+		}
+
+	}
+	
+	public void crearCorriente(int numero, double saldo, String nombre, int idCliente) throws Exception{
+		if (!this.clientes.containsKey(idCliente)) {
+			throw new Exception ("Cliente No existente");
+		}else if(this.exiteProductoG(numero)){
+			throw new Exception ("La cuenta ya existe");
+		} else if(this.existeTipoProductoG(idCliente, nombre)) {
+			throw new Exception ("El cliente ya tiene una cuenta de tipo : " + nombre);
+		}else {
+			Producto_financieroG corriente = new Producto_financieroG() {
+			};
+			this.clientes.get(idCliente).getProducto_fg().put(numero, corriente);
+			this.productoFG.add(corriente);
+		}
+
+	}
+	
+	public void crearInversion(int numero, double saldo, String nombre, int idCliente) throws Exception{
+		if (!this.clientes.containsKey(idCliente)) {
+			throw new Exception ("Cliente No existente");
+		}else if(this.exiteProductoG(numero)){
+			throw new Exception ("La cuenta ya existe");
+		} else if(this.existeTipoProductoG(idCliente, nombre)) {
+			throw new Exception ("El cliente ya tiene una cuenta de tipo : " + nombre);
+		}else {
+			Producto_financieroG inversion = new Producto_financieroG() {
+			};
+			this.clientes.get(idCliente).getProducto_fg().put(numero, inversion);
+			this.productoFG.add(inversion);
+		}
+
+	}
+	
+	public void crearHipoteca(int numero, double saldo, String nombre, int idCliente) throws Exception{
+		if (!this.clientes.containsKey(idCliente)) {
+			throw new Exception ("Cliente No existente");
+		}else if(this.exiteProductoG(numero)){
+			throw new Exception ("La cuenta ya existe");
+		} else if(this.existeTipoProductoG(idCliente, nombre)) {
+			throw new Exception ("El cliente ya tiene una cuenta de tipo : " + nombre);
+		}else {
+			Producto_financieroG hipoteca = new Producto_financieroG() {
+			};
+			this.clientes.get(idCliente).getProducto_fg().put(numero, hipoteca);
+			this.productoFG.add(hipoteca);
+		}
+
+	}
+
 	public void almacenar() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	public void cargar() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	private boolean existeTipoProductoG(int idCliente, String nombre) {
 		for(Integer numero : this.clientes.get(idCliente).getProducto_fg().keySet()) {
 			if(this.clientes.get(idCliente).getProducto_fg().get(numero).getNombre().equals(nombre)) {
@@ -78,7 +142,7 @@ public class Franquicia {
 		}
 		return false;
 	}
-	
+
 	private boolean existeTipoProductoL(int idCliente, String nombre) {
 		for(Integer numero : this.clientes.get(idCliente).getProducto_fl().keySet()) {
 			if(this.clientes.get(idCliente).getProducto_fl().get(numero).getNombre().equals(nombre)) {
@@ -96,5 +160,5 @@ public class Franquicia {
 		}
 		return false;
 	}
-	
+
 }

@@ -101,19 +101,40 @@ public class Menu {
 		sc.close();
 	}
 
-	private void crearTarjeta(Scanner sc) {
-		// TODO Auto-generated method stub
-		
+	private void crearTarjeta(Scanner sc) throws Exception{
+		System.out.println("Nombre:");
+		int numero = sc.nextInt();
+		System.out.println("Saldo:");
+		double saldo = sc.nextDouble();
+		System.out.println("Tipo:");
+		String nombre = sc.next();
+		System.out.println("Id Cliente:");
+		int idCliente = sc.nextInt();
+		this.banco.crearTarjeta(numero, saldo, nombre, idCliente);		
 	}
 
-	private void crearCorriente(Scanner sc) {
-		// TODO Auto-generated method stub
-		
+	private void crearCorriente(Scanner sc) throws Exception{
+		System.out.println("Nombre:");
+		int numero = sc.nextInt();
+		System.out.println("Saldo:");
+		double saldo = sc.nextDouble();
+		System.out.println("Tipo:");
+		String nombre = sc.next();
+		System.out.println("Id Cliente:");
+		int idCliente = sc.nextInt();
+		this.banco.crearCorriente(numero, saldo, nombre, idCliente);		
 	}
 
-	private void crearAhorro(Scanner sc) {
-		// TODO Auto-generated method stub
-		
+	private void crearAhorro(Scanner sc) throws Exception{
+		System.out.println("Nombre:");
+		int numero = sc.nextInt();
+		System.out.println("Saldo:");
+		double saldo = sc.nextDouble();
+		System.out.println("Tipo:");
+		String nombre = sc.next();
+		System.out.println("Id Cliente:");
+		int idCliente = sc.nextInt();
+		this.banco.crearAhorros(numero, saldo, nombre, idCliente);
 	}
 
 	private void escogerProductoL(Scanner sc) throws Exception{
@@ -137,14 +158,28 @@ public class Menu {
 		sc.close();
 	}
 
-	private void crearLibreinversion(Scanner sc) {
-		// TODO Auto-generated method stub
-		
+	private void crearLibreinversion(Scanner sc) throws Exception {
+		System.out.println("Nombre:");
+		int numero = sc.nextInt();
+		System.out.println("Saldo:");
+		double saldo = sc.nextDouble();
+		System.out.println("Tipo:");
+		String nombre = sc.next();
+		System.out.println("Id Cliente:");
+		int idCliente = sc.nextInt();
+		this.banco.crearInversion(numero, saldo, nombre, idCliente);
 	}
 
-	private void crearHipotecario(Scanner sc) {
-		// TODO Auto-generated method stub
-		
+	private void crearHipotecario(Scanner sc) throws Exception {
+		System.out.println("Nombre:");
+		int numero = sc.nextInt();
+		System.out.println("Saldo:");
+		double saldo = sc.nextDouble();
+		System.out.println("Tipo:");
+		String nombre = sc.next();
+		System.out.println("Id Cliente:");
+		int idCliente = sc.nextInt();
+		this.banco.crearHipoteca(numero, saldo, nombre, idCliente);		
 	}
 	
 	

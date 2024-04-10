@@ -6,6 +6,7 @@ public abstract class Producto_financieroG{
 	protected String nombre;
 	private Clientes cliente;
 	
+	
 	public int getNumero() {
 		return numero;
 	}
